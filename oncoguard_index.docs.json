@@ -1,0 +1,137 @@
+[
+  {
+    "text": "[DATASET SUMMARY – LOW RISK]\nNumber of patients: 303\n  Average Age: 35.41\n  Average Gender: 1.51\n  Average Air Pollution: 2.6\n  Average Alcohol use: 2.23\n  Average Dust Allergy: 3.11\n  Average OccuPational Hazards: 3.0\n  Average Genetic Risk: 2.73\n  Average chronic Lung Disease: 3.09\n  Average Balanced Diet: 3.0\n  Average Obesity: 2.41\n  Average Smoking: 3.02\n  Average Passive Smoker: 2.63\n  Average Chest Pain: 2.83\n  Average Coughing of Blood: 2.86\n  Average Fatigue: 2.17\n  Average Weight Loss: 2.5\n  Average Shortness of Breath: 2.5\n  Average Wheezing: 2.57\n  Average Swallowing Difficulty: 2.76\n  Average Clubbing of Finger Nails: 2.47\n  Average Frequent Cold: 2.37\n  Average Dry Cough: 2.91\n  Average Snoring: 2.14",
+    "source": "dataset_summary_low",
+    "type": "summary"
+  },
+  {
+    "text": "[DATASET SUMMARY – MEDIUM RISK]\nNumber of patients: 332\n  Average Age: 38.62\n  Average Gender: 1.41\n  Average Air Pollution: 2.93\n  Average Alcohol use: 4.2\n  Average Dust Allergy: 5.44\n  Average OccuPational Hazards: 4.72\n  Average Genetic Risk: 4.29\n  Average chronic Lung Disease: 3.96\n  Average Balanced Diet: 3.51\n  Average Obesity: 3.9\n  Average Smoking: 2.45\n  Average Passive Smoker: 3.05\n  Average Chest Pain: 3.75\n  Average Coughing of Blood: 3.85\n  Average Fatigue: 3.49\n  Average Weight Loss: 4.42\n  Average Shortness of Breath: 4.63\n  Average Wheezing: 4.76\n  Average Swallowing Difficulty: 4.16\n  Average Clubbing of Finger Nails: 4.94\n  Average Frequent Cold: 3.67\n  Average Dry Cough: 3.7\n  Average Snoring: 3.31",
+    "source": "dataset_summary_medium",
+    "type": "summary"
+  },
+  {
+    "text": "[DATASET SUMMARY – HIGH RISK]\nNumber of patients: 365\n  Average Age: 37.32\n  Average Gender: 1.31\n  Average Air Pollution: 5.69\n  Average Alcohol use: 6.83\n  Average Dust Allergy: 6.62\n  Average OccuPational Hazards: 6.48\n  Average Genetic Risk: 6.38\n  Average chronic Lung Disease: 5.83\n  Average Balanced Diet: 6.62\n  Average Obesity: 6.68\n  Average Smoking: 6.07\n  Average Passive Smoker: 6.53\n  Average Chest Pain: 6.39\n  Average Coughing of Blood: 7.44\n  Average Fatigue: 5.59\n  Average Weight Loss: 4.47\n  Average Shortness of Breath: 5.33\n  Average Wheezing: 3.88\n  Average Swallowing Difficulty: 4.19\n  Average Clubbing of Finger Nails: 4.21\n  Average Frequent Cold: 4.38\n  Average Dry Cough: 4.78\n  Average Snoring: 3.23",
+    "source": "dataset_summary_high",
+    "type": "summary"
+  },
+  {
+    "text": "[RISK FACTOR CORRELATIONS WITH CANCER LEVEL]\n  Obesity: 0.827\n  Coughing of Blood: 0.782\n  Alcohol use: 0.719\n  Dust Allergy: 0.714\n  Balanced Diet: 0.706\n  Passive Smoker: 0.704\n  Genetic Risk: 0.701\n  OccuPational Hazards: 0.673\n  Chest Pain: 0.645\n  Air Pollution: 0.636\n  Fatigue: 0.625\n  chronic Lung Disease: 0.610\n  Smoking: 0.520\n  Shortness of Breath: 0.497\n  Frequent Cold: 0.444\n  Dry Cough: 0.374\n  Weight Loss: 0.353\n  Snoring: 0.289\n  Clubbing of Finger Nails: 0.280\n  Swallowing Difficulty: 0.249\n  Wheezing: 0.243\n  Age: 0.060\n  Gender: -0.165",
+    "source": "dataset_correlations",
+    "type": "analysis"
+  },
+  {
+    "text": "[PATIENT PROFILE – LOW RISK]\nPatient ID: P1, Age: 33, Gender: Male\nRisk Factors: Air Pollution=2, Alcohol=4, Smoking=3, Genetic Risk=3, Obesity=4, Dust Allergy=5, Occupational Hazards=4\nSymptoms: Chest Pain=2, Coughing of Blood=4, Fatigue=3, Weight Loss=4, Shortness of Breath=2, Wheezing=2\nLifestyle: Balanced Diet=2, Passive Smoker=2\n→ Risk Level: Low",
+    "source": "patient_P1",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – LOW RISK]\nPatient ID: P103, Age: 52, Gender: Female\nRisk Factors: Air Pollution=2, Alcohol=4, Smoking=3, Genetic Risk=3, Obesity=4, Dust Allergy=5, Occupational Hazards=4\nSymptoms: Chest Pain=2, Coughing of Blood=4, Fatigue=3, Weight Loss=4, Shortness of Breath=2, Wheezing=2\nLifestyle: Balanced Diet=2, Passive Smoker=2\n→ Risk Level: Low",
+    "source": "patient_P103",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – LOW RISK]\nPatient ID: P104, Age: 28, Gender: Female\nRisk Factors: Air Pollution=3, Alcohol=1, Smoking=1, Genetic Risk=2, Obesity=3, Dust Allergy=4, Occupational Hazards=3\nSymptoms: Chest Pain=3, Coughing of Blood=1, Fatigue=3, Weight Loss=2, Shortness of Breath=2, Wheezing=4\nLifestyle: Balanced Diet=4, Passive Smoker=4\n→ Risk Level: Low",
+    "source": "patient_P104",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – LOW RISK]\nPatient ID: P110, Age: 27, Gender: Female\nRisk Factors: Air Pollution=3, Alcohol=1, Smoking=2, Genetic Risk=3, Obesity=3, Dust Allergy=4, Occupational Hazards=2\nSymptoms: Chest Pain=4, Coughing of Blood=2, Fatigue=2, Weight Loss=2, Shortness of Breath=3, Wheezing=4\nLifestyle: Balanced Diet=3, Passive Smoker=2\n→ Risk Level: Low",
+    "source": "patient_P110",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – LOW RISK]\nPatient ID: P128, Age: 33, Gender: Male\nRisk Factors: Air Pollution=2, Alcohol=4, Smoking=3, Genetic Risk=3, Obesity=4, Dust Allergy=5, Occupational Hazards=4\nSymptoms: Chest Pain=2, Coughing of Blood=4, Fatigue=3, Weight Loss=4, Shortness of Breath=2, Wheezing=2\nLifestyle: Balanced Diet=2, Passive Smoker=2\n→ Risk Level: Low",
+    "source": "patient_P128",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – MEDIUM RISK]\nPatient ID: P10, Age: 17, Gender: Male\nRisk Factors: Air Pollution=3, Alcohol=1, Smoking=2, Genetic Risk=4, Obesity=2, Dust Allergy=5, Occupational Hazards=3\nSymptoms: Chest Pain=2, Coughing of Blood=3, Fatigue=1, Weight Loss=3, Shortness of Breath=7, Wheezing=8\nLifestyle: Balanced Diet=2, Passive Smoker=4\n→ Risk Level: Medium",
+    "source": "patient_P10",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – MEDIUM RISK]\nPatient ID: P105, Age: 35, Gender: Female\nRisk Factors: Air Pollution=4, Alcohol=5, Smoking=6, Genetic Risk=6, Obesity=5, Dust Allergy=6, Occupational Hazards=5\nSymptoms: Chest Pain=6, Coughing of Blood=5, Fatigue=1, Weight Loss=4, Shortness of Breath=3, Wheezing=2\nLifestyle: Balanced Diet=5, Passive Smoker=6\n→ Risk Level: Medium",
+    "source": "patient_P105",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – MEDIUM RISK]\nPatient ID: P106, Age: 46, Gender: Male\nRisk Factors: Air Pollution=2, Alcohol=3, Smoking=2, Genetic Risk=4, Obesity=3, Dust Allergy=4, Occupational Hazards=2\nSymptoms: Chest Pain=4, Coughing of Blood=4, Fatigue=1, Weight Loss=2, Shortness of Breath=4, Wheezing=6\nLifestyle: Balanced Diet=3, Passive Smoker=3\n→ Risk Level: Medium",
+    "source": "patient_P106",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – MEDIUM RISK]\nPatient ID: P109, Age: 39, Gender: Female\nRisk Factors: Air Pollution=4, Alcohol=5, Smoking=6, Genetic Risk=5, Obesity=6, Dust Allergy=6, Occupational Hazards=6\nSymptoms: Chest Pain=6, Coughing of Blood=6, Fatigue=5, Weight Loss=3, Shortness of Breath=2, Wheezing=4\nLifestyle: Balanced Diet=6, Passive Smoker=6\n→ Risk Level: Medium",
+    "source": "patient_P109",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – MEDIUM RISK]\nPatient ID: P111, Age: 73, Gender: Male\nRisk Factors: Air Pollution=5, Alcohol=6, Smoking=8, Genetic Risk=6, Obesity=5, Dust Allergy=6, Occupational Hazards=5\nSymptoms: Chest Pain=5, Coughing of Blood=5, Fatigue=4, Weight Loss=3, Shortness of Breath=6, Wheezing=2\nLifestyle: Balanced Diet=6, Passive Smoker=5\n→ Risk Level: Medium",
+    "source": "patient_P111",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – HIGH RISK]\nPatient ID: P100, Age: 35, Gender: Male\nRisk Factors: Air Pollution=4, Alcohol=5, Smoking=2, Genetic Risk=5, Obesity=7, Dust Allergy=6, Occupational Hazards=5\nSymptoms: Chest Pain=4, Coughing of Blood=8, Fatigue=8, Weight Loss=7, Shortness of Breath=9, Wheezing=2\nLifestyle: Balanced Diet=6, Passive Smoker=3\n→ Risk Level: High",
+    "source": "patient_P100",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – HIGH RISK]\nPatient ID: P1000, Age: 37, Gender: Male\nRisk Factors: Air Pollution=7, Alcohol=7, Smoking=7, Genetic Risk=6, Obesity=7, Dust Allergy=7, Occupational Hazards=7\nSymptoms: Chest Pain=7, Coughing of Blood=8, Fatigue=4, Weight Loss=2, Shortness of Breath=3, Wheezing=1\nLifestyle: Balanced Diet=7, Passive Smoker=7\n→ Risk Level: High",
+    "source": "patient_P1000",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – HIGH RISK]\nPatient ID: P101, Age: 46, Gender: Male\nRisk Factors: Air Pollution=6, Alcohol=8, Smoking=8, Genetic Risk=7, Obesity=7, Dust Allergy=7, Occupational Hazards=7\nSymptoms: Chest Pain=7, Coughing of Blood=9, Fatigue=3, Weight Loss=2, Shortness of Breath=4, Wheezing=1\nLifestyle: Balanced Diet=7, Passive Smoker=7\n→ Risk Level: High",
+    "source": "patient_P101",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – HIGH RISK]\nPatient ID: P102, Age: 35, Gender: Male\nRisk Factors: Air Pollution=4, Alcohol=5, Smoking=2, Genetic Risk=5, Obesity=7, Dust Allergy=6, Occupational Hazards=5\nSymptoms: Chest Pain=4, Coughing of Blood=8, Fatigue=8, Weight Loss=7, Shortness of Breath=9, Wheezing=2\nLifestyle: Balanced Diet=6, Passive Smoker=3\n→ Risk Level: High",
+    "source": "patient_P102",
+    "type": "patient"
+  },
+  {
+    "text": "[PATIENT PROFILE – HIGH RISK]\nPatient ID: P107, Age: 44, Gender: Male\nRisk Factors: Air Pollution=6, Alcohol=7, Smoking=7, Genetic Risk=7, Obesity=7, Dust Allergy=7, Occupational Hazards=7\nSymptoms: Chest Pain=7, Coughing of Blood=7, Fatigue=5, Weight Loss=3, Shortness of Breath=2, Wheezing=7\nLifestyle: Balanced Diet=7, Passive Smoker=8\n→ Risk Level: High",
+    "source": "patient_P107",
+    "type": "patient"
+  },
+  {
+    "text": "[CANCER RISK SCORING RULES – derived from dataset]\nScores range from 1 (low) to 9 (high) for each factor.\n\nHIGH RISK indicators (score ≥ 6):\n  - Smoking, Coughing of Blood, Chest Pain, Shortness of Breath\n  - Air Pollution, Alcohol use, Genetic Risk, Occupational Hazards\n\nMEDIUM RISK indicators (score 4–5):\n  - Fatigue, Weight Loss, Dust Allergy, Obesity\n  - Passive Smoker, Wheezing, Balanced Diet (low score)\n\nLOW RISK profile:\n  - Most factor scores ≤ 3\n  - No severe symptoms\n  - Good balanced diet, low environmental exposure\n\nGeneral rule: if 3+ HIGH indicators score ≥ 6, risk is likely HIGH.\nIf mostly MEDIUM indicators, risk is MEDIUM. Otherwise LOW.",
+    "source": "scoring_rules",
+    "type": "rules"
+  },
+  {
+    "text": "[MEDICAL KNOWLEDGE – Cancer Généralités] GENERALITES SUR LE CANCER Formation continue AS en cancérologie Nicole Morel le 17/10/2008 PLAN • 1 Définition • 2 Les causes connues • 3 Fréquence • 4 Les principaux cancers et leurs signes d’alarmes • 5 Prévention • 6 Dépistage • 7 Les traitements • 8 Cancer et vie au quotidien • 9 Les mots clefs du plan cancer QU’ EST - CE QUE LE CANCER ? Rappel : Notre corps est composé d’une multitude de cellules contenues dans les tissus de nos différents organes. • Tissu épithélial ( muqueuses,épiderme, glandes) • Tissu conjonctif (tissu adipeux : hypoderme,muscles,os,cartilage) • Tissu nerveux • Système mélanique ( la mélanine est un pigment brun qui joue un rôle dans le bronzage) QU’EST-CE QUE LE CANCER? • Toutes les informations des cellules sont dans leur code génétique propre. Chaque jour les cellules meurent et ce code est recopié pour être transmis aux cellules filles. • Des erreurs se produisent et sont réparées et exceptionnellement, une erreur irrémédiable survient et permet l’initiation du processus cancéreux. • Le risque augmente avec le vieillissement des cellules qui peut être accéléré par l’environnement (tabac, soleil….) QU’EST-CE QUE LE CANCER? Définition – Perte de contrôle accidentelle de la régulation des cellules qui aboutit à leur prolifération anarchique. – Une tumeur est le résultat de la multiplication désordonnée des cellules d’un tissu ou d’un organe qui envahissent les tissus voisins en détruisant les capsules de séparation provoquant ainsi des métastases LES CAUSES CONNUES Origine multifactorielle: le risque augmente avec deux notions : - Association de de plusieurs facteurs cancérigènes - Importance de l’exposition au risque dans : • la quantité (effet /dose) • Le temps ( précocité et durée d’exposition) LES CAUSES CONNUES 1 Facteur de risque professionnel - Exposition à certaines substances ( amiante, benzène, chlorure de vinyle, goudron….) - Exposition aux radiations ionisantes (radiologues, militaires, centrales) - Utilisation d’antimitotiques LES CAUSES CONNUES 2 Facteur de risque social - tabac ,alcool, alimentation déséquilibrée - exposition solaire - sexualité à risque - stress LES CAUSES CONNUES 3 Facteur de risque viral Hépatite (foie ), papilloma-virus (col utérin) HIV (sarcome ) 4 Facteur de risque génétique Maladies génétiques, certains cancers familiaux) 5 Les autres facteurs Certains médicaments (distilbène) Pollution atmosphérique (centrales défectueuses, gaz des voitures ……..) FREQUENCE Décès imputable au cancer dans 26%des cas en France 31% chez l’homme et 21% chez la femme Première cause",
+    "source": "pdf_chunk_0",
+    "type": "medical_knowledge"
+  },
+  {
+    "text": "(col utérin) HIV (sarcome ) 4 Facteur de risque génétique Maladies génétiques, certains cancers familiaux) 5 Les autres facteurs Certains médicaments (distilbène) Pollution atmosphérique (centrales défectueuses, gaz des voitures ……..) FREQUENCE Décès imputable au cancer dans 26%des cas en France 31% chez l’homme et 21% chez la femme Première cause des décès homme (MCV 29%) Deuxième cause de décès femme (MCV 38%) Incidence des cas en 2000 Sein : 42000 Prostate : 40 000 Colorectal : 36000 poumon : 28 000 SIGNES D’ALARME DES PRINCIPAUX CANCERS Peau (mélanome) modification taille et couleur d’un grain de beauté,desquamation, suintement démangeaisons, douleur Colon/ rectum saignement rectal;selles sanglantes, modification du transit Vessie / prostate mictions fréquentes, urines sanglantes, jet faible ou interrompu, douleurs dans la région pelvienne, aine ou en bas du dos SIGNES D’ALARME DES PRINCIPAUX CANCERS Sein épaississement œdème ou modification de la texture du tissu mammaire Pancréas peu de signes précoces sauf douleur abdominale prolongée et",
+    "source": "pdf_chunk_0",
+    "type": "medical_knowledge"
+  },
+  {
+    "text": "[MEDICAL KNOWLEDGE – Cancer Généralités] : 36000 poumon : 28 000 SIGNES D’ALARME DES PRINCIPAUX CANCERS Peau (mélanome) modification taille et couleur d’un grain de beauté,desquamation, suintement démangeaisons, douleur Colon/ rectum saignement rectal;selles sanglantes, modification du transit Vessie / prostate mictions fréquentes, urines sanglantes, jet faible ou interrompu, douleurs dans la région pelvienne, aine ou en bas du dos SIGNES D’ALARME DES PRINCIPAUX CANCERS Sein épaississement œdème ou modification de la texture du tissu mammaire Pancréas peu de signes précoces sauf douleur abdominale prolongée et problèmes digestifs Poumon toux lancinante,crachats sanglants,douleur thoracique, pneumonie ou bronchite récidivante SIGNES D’ALARME DES PRINCIPAUX CANCERS Gorge / larynx plaie buccale qui ne guérit pas, boule dans la gorge, voix rauque, difficulté à déglutir ou à mâcher Utérus ( et col) saignements vaginaux non liés au cycle menstruel et secrétions inhabituelles Leucémies et lymphomes fatigue,pâleur,perte de poids,infections à répétition, hématomes, ganglions enflés, hématomes, sueurs nocturnes, fièvre SIGNES D’ALARME DES PRINCIPAUX CANCERS • Les signes d’alarme ne sont pas forcément en relation avec le cancer, mais une consultation s’impose. • Le dépistage précoce permet d’améliorer les chances de survie. PREVENTION - Concerne chaque individu dans son comportement pour lui et les autres. - Concerne la société : campagne publicitaire, information télévisées visant à sensibiliser le public sur les dangers de certains produits ou des comportements à risque. DEPISTAGE - Chances de survie augmentées si dépistage précoce - Dépistage personnel ( bien connaître son corps) - Dépistage systématique en fonction de l’âge ( sein et colon ) - Rôle d’information et de conseil des personnels de santé LES TRAITEMENTS 1 La chirurgie Pour les tumeurs solides , elle permet d’enlever le foyer principal, mais il persiste souvent une possibilité de maladie résiduelle c’est pourquoi on l’associe souvent à la chimiothérapie et/ou radiothérapie qui quelquefois sont même réalisées avant l’acte chirurgical Si la chirurgie doit être mutilante le patient doit être préparé psychologiquement et techniquement ( stomathérapie) LES TRAITEMENTS 2 La radiothérapie Utilisation actuelle de la radiothérapie haute énergie avec les accélérateurs de particules Le temps d ’exposition et le nombre de séances dépendent du type de tumeur Effets secondaires : ( fatigue, sclérose de la peau,des muscles,des lymphatiques avec oedèmes persistants, inflammation des muqueuses digestives, baisse de l’immunité en général)… LES TRAITEMENTS 3 La chimiothérapie Elle représente le seul moyen théorique de contrôler la dissémination cancéreuse car véhiculée par le sang elle circulera dans tout le corps",
+    "source": "pdf_chunk_1",
+    "type": "medical_knowledge"
+  },
+  {
+    "text": "Effets secondaires : ( fatigue, sclérose de la peau,des muscles,des lymphatiques avec oedèmes persistants, inflammation des muqueuses digestives, baisse de l’immunité en général)… LES TRAITEMENTS 3 La chimiothérapie Elle représente le seul moyen théorique de contrôler la dissémination cancéreuse car véhiculée par le sang elle circulera dans tout le corps alors que la chirurgie et la radiothérapie ne s’adresse qu’à des zones localisées Le principe consiste à introduire des substances chimiques capables d’interférer dans le métabolisme des cellules (cytostatiques) LES TRAITEMENTS Effets secondaires de la chimiothérapie: Elle entraîne une fatigue générale Toxique également pour les cellules saines - alopécie - nausées, vomissements - toxicité du tube digestif ( muqueuses ) - toxicité de certains organes vitaux (cœur,foie,reins..) - toxicité médullaire (aplasie médullaire donc une baisse de l’immunité en général avec risque infectieux augmenté et besoins transfusionnels). LES TRAITEMENTS 4 Les autres traitements - Corticothérapie - Hormonothérapie 5 La nouveauté: les thérapeutiques ciblées - Les anti-angiogènèse,",
+    "source": "pdf_chunk_1",
+    "type": "medical_knowledge"
+  },
+  {
+    "text": "[MEDICAL KNOWLEDGE – Cancer Généralités] métabolisme des cellules (cytostatiques) LES TRAITEMENTS Effets secondaires de la chimiothérapie: Elle entraîne une fatigue générale Toxique également pour les cellules saines - alopécie - nausées, vomissements - toxicité du tube digestif ( muqueuses ) - toxicité de certains organes vitaux (cœur,foie,reins..) - toxicité médullaire (aplasie médullaire donc une baisse de l’immunité en général avec risque infectieux augmenté et besoins transfusionnels). LES TRAITEMENTS 4 Les autres traitements - Corticothérapie - Hormonothérapie 5 La nouveauté: les thérapeutiques ciblées - Les anti-angiogènèse, qui, par action angiostatique ou action angio-toxique, inhibent ou détruisent les vaisseaux tumoraux - Les anticorps monoclonaux dirigés contre les antigènes marqueurs spécifiques des cancers CANCER ET VIE AU QUOTIDIEN 1 Les hospitalisations successives En secteur conventionnel ou en hôpital de jour: les équipes qui reçoivent les patients doivent avoir un sens de l’accueil très développé. Le patient doit se sentir « chez lui » puisque l’hôpital devient un peu sa deuxième maison CANCER ET VIE AU QUOTIDIEN 2 Altération de l’état général Les traitements successifs entraînent une fatigue générale avec une baisse de l’immunité et un risque infectieux accru. Les actes de la vie courante deviennent difficiles - perte de l’estime de soi (dépendance) - perte de l’image de soi : modification corporelle (alopécie,chirurgie mutilante,cachexie ) Les équipes doivent être à l’écoute afin de mieux comprendre et soutenir les patients CANCER ET VIE AU QUOTIDIEN 3 Les problèmes psychologiques Le cancer est source d’angoisse voire de dépression Le sommeil est très souvent perturbé Ce qui est vécu par le patient doit être perçu par ceux qui le soignent. Une relation d’aide doit s’instaurer, il sera peut être nécessaire d’avoir recours à un psychologue ou un psychiatre pour entretiens de suivi et/ou traitements appropriés. CANCER ET VIE AU QUOTIDIEN 4 La douleur peut être terrible dans l’intensité et la durée surtout en phase terminale quand il y a des métastases hépatiques ou osseuses Elle nécessite souvent le recours aux antalgiques majeurs ( morphine) qui ont souvent pour effets secondaires un endormissement pas toujours souhaitable et accepté par le patient En aucun cas il ne faut laisser souffrir le patient il faut faire appel aux centres de la douleur qui savent adapter les doses de façon personnalisée CANCER ET VIE AU QUOTIDIEN 5 L’alimentation les cancers avancés peuvent entraîner une dénutrition importante avec dégoût de la nourriture - il faut s’adapter aux besoins en augmentant le",
+    "source": "pdf_chunk_2",
+    "type": "medical_knowledge"
+  },
+  {
+    "text": "laisser souffrir le patient il faut faire appel aux centres de la douleur qui savent adapter les doses de façon personnalisée CANCER ET VIE AU QUOTIDIEN 5 L’alimentation les cancers avancés peuvent entraîner une dénutrition importante avec dégoût de la nourriture - il faut s’adapter aux besoins en augmentant le nombre de repas et en diminuant les quantités en soignant la présentation - appeler la diététicienne - quelquefois nutrition entérale ou parentérale CANCER ET VIE AU QUOTIDIEN 6 Vie socio- professionnelle et familiale Si le patient souhaite poursuivre une activité il ne faut pas s’y opposer mais tout faire pour adapter les traitements en fonction de sa vie. la poursuite des activités aide au maintien l’équilibre psychologique. Faire appel aux assistante sociale en cas de difficultés CANCER ET VIE AU QUOTIDIEN 7 Vie sexuelle et contraception Les patients sous chimiothérapies doivent avoir une contraception et 8 mois après l’arrêt des traitements Certains traitements entraînent une",
+    "source": "pdf_chunk_2",
+    "type": "medical_knowledge"
+  },
+  {
+    "text": "[MEDICAL KNOWLEDGE – Cancer Généralités]\nAU QUOTIDIEN 6 Vie socio- professionnelle et familiale Si le patient souhaite poursuivre une activité il ne faut pas s’y opposer mais tout faire pour adapter les traitements en fonction de sa vie. la poursuite des activités aide au maintien l’équilibre psychologique. Faire appel aux assistante sociale en cas de difficultés CANCER ET VIE AU QUOTIDIEN 7 Vie sexuelle et contraception Les patients sous chimiothérapies doivent avoir une contraception et 8 mois après l’arrêt des traitements Certains traitements entraînent une stérilité penser aux congélations de gonades. Il existe une perte du désir et une baisse de la libido liée à la pathologie et/ou aux traitements ,il faut insister sur le caractère temporaire de la situation LES MOTS CLEFS DU PLAN CANCER INCA : institut national du cancer COMITE DE COORDINATION DU CANCER : 3C comités locaux chargés de veiller à l’application des directives du plan cancer notre territoire ( le CHU, les 2 cliniques de Besançon et le CH de Pontarlier) RCP : réunion de concertation pluri - disciplinaire LES MOTS CLEFS DU PLAN CANCER DISPOSITIF D’ANNONCE : participation des infirmières et psychologues, possibilité d’une consultation avec une autre personne que le médecin. SOINS DE SUPPORT information et orientation des patients vers les autres professionnels concernés par la prise en charge du cancer :( psychologue, diététicienne, kinésithérapeute, assistante sociale, équipe mobile de la douleur, équipe mobile des soins palliatifs, coiffeur, soins esthétiques, associations diverses) • 7",
+    "source": "pdf_chunk_3",
+    "type": "medical_knowledge"
+  }
+]
