@@ -213,7 +213,7 @@ class VectorStore:
 # 4. LLM GENERATION (Groq API)
 # ─────────────────────────────────────────────
 
-GROQ_MODEL = "llama3-8b-8192"   # free-tier model; alternatives: mixtral-8x7b-32768, gemma2-9b-it
+GROQ_MODEL = "llama-3.3-70b-versatile"   # free-tier model; alternatives: mixtral-8x7b-32768, gemma2-9b-it
 
 def generate_response(query: str, retrieved_chunks: list[dict], api_key: str) -> str:
     """Generate a response using Groq (LLaMA 3) with retrieved context."""
@@ -258,14 +258,22 @@ Please provide a helpful, accurate response based on the context above."""
         data=payload,
         headers={
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}"
+            "Authorization": f"Bearer {api_key}",
+            "User-Agent": "OncoGuard/1.0"
         },
         method="POST"
     )
 
-    with urllib.request.urlopen(req) as resp:
-        result = json.loads(resp.read().decode("utf-8"))
-        return result["choices"][0]["message"]["content"]
+    try:
+        with urllib.request.urlopen(req) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+            return result["choices"][0]["message"]["content"]
+
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode()
+        print("HTTP ERROR:", e.code)
+        print("DETAILS:", error_body)
+        raise
 
 
 # ─────────────────────────────────────────────
