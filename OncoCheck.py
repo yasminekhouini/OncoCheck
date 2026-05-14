@@ -7,17 +7,14 @@ RAG pipeline combining:
   • FAISS vector store             → semantic retrieval
   • groq API           → response generation
 """
-
+import chromadb
 import os
 import json
 import re
 import numpy as np
 import pandas as pd
 from pypdf import PdfReader
-import faiss
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import normalize
-import pickle
+
 
 # ─────────────────────────────────────────────
 # 1. DOCUMENT LOADING
@@ -52,7 +49,7 @@ def load_excel_as_documents(path: str) -> list[dict]:
 
     # ── C) Individual patient chunks (sampled representatives) ──
     for level in ["Low", "Medium", "High"]:
-        subset = df[df["Level"] == level].head(5)
+        subset = df[df["Level"] == level]
         for _, row in subset.iterrows():
             text = (
                 f"[PATIENT PROFILE – {level.upper()} RISK]\n"
@@ -148,65 +145,59 @@ def chunk_documents(docs: list[dict], max_tokens: int = 400) -> list[dict]:
 # 3. EMBEDDINGS + VECTOR STORE
 # ─────────────────────────────────────────────
 
+
 class VectorStore:
-    """
-    TF-IDF based vector store with FAISS for fast similarity search.
-    Uses TF-IDF embeddings (offline, no HuggingFace needed) normalized
-    for cosine similarity, stored in a FAISS IndexFlatIP index.
-    """
     def __init__(self):
-        self.vectorizer = TfidfVectorizer(
-            max_features=4096,      # vocabulary size
-            sublinear_tf=True,      # log(1+tf) smoothing
-            ngram_range=(1, 2),     # unigrams + bigrams
-            min_df=1,
-            analyzer="word"
+        self.client = chromadb.CloudClient(
+            api_key='ck-FSuzH189M53haeD8B2zEsjVjZZ143xXu74rLCJ5HWMJg',
+            tenant='534c6454-7ba5-4c4b-ad42-59c25c5f0c8d',
+            database='oncocheck'
         )
-        self.index = None
-        self.documents = []
+        self.collection = self.client.get_or_create_collection(name="oncoguard")
 
     def build(self, documents: list[dict]):
-        """Embed all documents with TF-IDF and build FAISS index."""
-        self.documents = documents
-        texts = [doc["text"] for doc in documents]
-        print(f"[OncoCheck] Computing TF-IDF embeddings for {len(texts)} chunks...")
+        """Upload all documents to ChromaDB."""
+        print(f"[OncoGuard] Uploading {len(documents)} chunks to ChromaDB...")
+        ids       = [str(i) for i in range(len(documents))]
+        texts     = [doc["text"] for doc in documents]
+        metadatas = [{"source": doc["source"], "type": doc["type"]} for doc in documents]
 
-        tfidf_matrix = self.vectorizer.fit_transform(texts).toarray().astype("float32")
-        embeddings = normalize(tfidf_matrix, norm="l2")  # L2 normalize → cosine sim
-
-        dim = embeddings.shape[1]
-        self.index = faiss.IndexFlatIP(dim)
-        self.index.add(embeddings)
-        print(f"[OncoCheck] FAISS index built: {self.index.ntotal} vectors, dim={dim}")
+        # Upload in batches of 100
+        batch_size = 100
+        for i in range(0, len(documents), batch_size):
+            self.collection.add(
+                ids=ids[i:i+batch_size],
+                documents=texts[i:i+batch_size],
+                metadatas=metadatas[i:i+batch_size]
+            )
+            print(f"  Uploaded {min(i+batch_size, len(documents))}/{len(documents)}")
+        print("[OncoGuard] ChromaDB upload complete ✓")
 
     def search(self, query: str, top_k: int = 5) -> list[dict]:
-        """Retrieve top-k most relevant chunks for a query."""
-        query_vec = self.vectorizer.transform([query]).toarray().astype("float32")
-        query_vec = normalize(query_vec, norm="l2")
-        scores, indices = self.index.search(query_vec, top_k)
-        results = []
-        for score, idx in zip(scores[0], indices[0]):
-            if idx != -1:
-                doc = self.documents[idx].copy()
-                doc["score"] = float(score)
-                results.append(doc)
-        return results
+        """Retrieve top-k most relevant chunks from ChromaDB."""
+        results = self.collection.query(
+            query_texts=[query],
+            n_results=top_k
+        )
+        chunks = []
+        for i in range(len(results["documents"][0])):
+            chunks.append({
+                "text":   results["documents"][0][i],
+                "source": results["metadatas"][0][i]["source"],
+                "type":   results["metadatas"][0][i]["type"],
+                "score":  1 - results["distances"][0][i]  # convert distance → similarity
+            })
+        return chunks
 
     def save(self, path: str):
-        faiss.write_index(self.index, f"{path}.faiss")
-        with open(f"{path}.docs.json", "w", encoding="utf-8") as f:
-            json.dump(self.documents, f, ensure_ascii=False, indent=2)
-        with open(f"{path}.vectorizer.pkl", "wb") as f:
-            pickle.dump(self.vectorizer, f)
-        print(f"[OncoCheck] Index saved to {path}.*")
+        # ChromaDB cloud saves automatically — nothing to do locally
+        print("[OncoGuard] Data is stored in ChromaDB cloud ✓")
 
     def load(self, path: str):
-        self.index = faiss.read_index(f"{path}.faiss")
-        with open(f"{path}.docs.json", encoding="utf-8") as f:
-            self.documents = json.load(f)
-        with open(f"{path}.vectorizer.pkl", "rb") as f:
-            self.vectorizer = pickle.load(f)
-        print(f"[OncoCheck] Index loaded: {self.index.ntotal} vectors")
+        # Just reconnect to the existing collection
+        self.collection = self.client.get_or_create_collection(name="oncoguard")
+        count = self.collection.count()
+        print(f"[OncoGuard] Connected to ChromaDB — {count} vectors loaded ✓")
 
 
 # ─────────────────────────────────────────────
@@ -371,14 +362,14 @@ if __name__ == "__main__":
     PDF_PATH = "generalites_cancer.pdf"
     INDEX_PATH = "OncoCheck_index"
 
-    rag = OncoCheckRAG(api_key=API_KEY, index_path=INDEX_PATH)
+    
 
-    # Build index if it doesn't exist, otherwise load it
-    if not os.path.exists(f"{INDEX_PATH}.faiss"):
-        rag.build_index("cancer_patient_data_sets.xlsx", "generalites_cancer.pdf")
+    rag_instance = OncoCheckRAG(api_key=API_KEY)
+    if rag_instance.vector_store.collection.count() == 0:
+        rag_instance.build_index(EXCEL_PATH, PDF_PATH)
     else:
-        print("[OncoCheck] Loading existing index...")
-        rag.load_index()
+        rag_instance.vector_store.load(None)
+        print("[OncoCheck] Existing ChromaDB collection found, skipping rebuild.")
+    rag_instance.chat()
 
-    # Start chat
-    rag.chat()
+    
