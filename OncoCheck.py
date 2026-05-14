@@ -1,11 +1,11 @@
 """
-OncoGuard – Cancer Risk RAG Chatbot
+OncoCheck – Cancer Risk RAG Chatbot
 =====================================
 RAG pipeline combining:
   • cancer_patient_data_sets.xlsx  → structured patient knowledge
   • generalites_cancer.pdf         → medical background knowledge
   • FAISS vector store             → semantic retrieval
-  • Anthropic Claude API           → response generation
+  • groq API           → response generation
 """
 
 import os
@@ -169,7 +169,7 @@ class VectorStore:
         """Embed all documents with TF-IDF and build FAISS index."""
         self.documents = documents
         texts = [doc["text"] for doc in documents]
-        print(f"[OncoGuard] Computing TF-IDF embeddings for {len(texts)} chunks...")
+        print(f"[OncoCheck] Computing TF-IDF embeddings for {len(texts)} chunks...")
 
         tfidf_matrix = self.vectorizer.fit_transform(texts).toarray().astype("float32")
         embeddings = normalize(tfidf_matrix, norm="l2")  # L2 normalize → cosine sim
@@ -177,7 +177,7 @@ class VectorStore:
         dim = embeddings.shape[1]
         self.index = faiss.IndexFlatIP(dim)
         self.index.add(embeddings)
-        print(f"[OncoGuard] FAISS index built: {self.index.ntotal} vectors, dim={dim}")
+        print(f"[OncoCheck] FAISS index built: {self.index.ntotal} vectors, dim={dim}")
 
     def search(self, query: str, top_k: int = 5) -> list[dict]:
         """Retrieve top-k most relevant chunks for a query."""
@@ -198,7 +198,7 @@ class VectorStore:
             json.dump(self.documents, f, ensure_ascii=False, indent=2)
         with open(f"{path}.vectorizer.pkl", "wb") as f:
             pickle.dump(self.vectorizer, f)
-        print(f"[OncoGuard] Index saved to {path}.*")
+        print(f"[OncoCheck] Index saved to {path}.*")
 
     def load(self, path: str):
         self.index = faiss.read_index(f"{path}.faiss")
@@ -206,7 +206,7 @@ class VectorStore:
             self.documents = json.load(f)
         with open(f"{path}.vectorizer.pkl", "rb") as f:
             self.vectorizer = pickle.load(f)
-        print(f"[OncoGuard] Index loaded: {self.index.ntotal} vectors")
+        print(f"[OncoCheck] Index loaded: {self.index.ntotal} vectors")
 
 
 # ─────────────────────────────────────────────
@@ -224,7 +224,7 @@ def generate_response(query: str, retrieved_chunks: list[dict], api_key: str) ->
         for c in retrieved_chunks
     )
 
-    system_prompt = """You are OncoGuard, an intelligent cancer risk assistant chatbot.
+    system_prompt = """You are OncoCheck, an intelligent cancer risk assistant chatbot.
 You help users understand cancer risk factors, symptoms, and levels based on medical data and research.
 
 IMPORTANT GUIDELINES:
@@ -259,7 +259,7 @@ Please provide a helpful, accurate response based on the context above."""
         headers={
             "Content-Type": "application/json",
             "Authorization": f"Bearer {api_key}",
-            "User-Agent": "OncoGuard/1.0"
+            "User-Agent": "OncoCheck/1.0"
         },
         method="POST"
     )
@@ -280,25 +280,25 @@ Please provide a helpful, accurate response based on the context above."""
 # 5. FULL RAG PIPELINE
 # ─────────────────────────────────────────────
 
-class OncoGuardRAG:
-    def __init__(self, api_key: str, index_path: str = "oncoguard_index"):
+class OncoCheckRAG:
+    def __init__(self, api_key: str, index_path: str = "OncoCheck_index"):
         self.api_key = api_key
         self.index_path = index_path
         self.vector_store = VectorStore()
 
     def build_index(self, excel_path: str, pdf_path: str):
         """Full pipeline: load → chunk → embed → index."""
-        print("\n[OncoGuard] ── Step 1: Loading documents ──")
+        print("\n[OncoCheck] ── Step 1: Loading documents ──")
         excel_docs = load_excel_as_documents(excel_path)
         pdf_docs = load_pdf_as_documents(pdf_path)
         all_docs = excel_docs + pdf_docs
         print(f"  Loaded {len(excel_docs)} Excel chunks + {len(pdf_docs)} PDF chunks")
 
-        print("\n[OncoGuard] ── Step 2: Chunking ──")
+        print("\n[OncoCheck] ── Step 2: Chunking ──")
         chunked = chunk_documents(all_docs)
         print(f"  Total chunks after splitting: {len(chunked)}")
 
-        print("\n[OncoGuard] ── Step 3: Building FAISS index ──")
+        print("\n[OncoCheck] ── Step 3: Building FAISS index ──")
         self.vector_store.build(chunked)
         self.vector_store.save(self.index_path)
 
@@ -322,7 +322,7 @@ class OncoGuardRAG:
     def chat(self):
         """Interactive CLI chat loop."""
         print("\n" + "="*60)
-        print("  🩺 OncoGuard – Cancer Risk RAG Assistant")
+        print("  🩺 OncoCheck – Cancer Risk RAG Assistant")
         print("  Type 'quit' to exit | 'verbose' to toggle debug mode")
         print("="*60 + "\n")
 
@@ -331,20 +331,20 @@ class OncoGuardRAG:
             try:
                 user_input = input("You: ").strip()
             except (EOFError, KeyboardInterrupt):
-                print("\n[OncoGuard] Goodbye!")
+                print("\n[OncoCheck] Goodbye!")
                 break
 
             if not user_input:
                 continue
             if user_input.lower() == "quit":
-                print("[OncoGuard] Goodbye! Take care of your health.")
+                print("[OncoCheck] Goodbye! Take care of your health.")
                 break
             if user_input.lower() == "verbose":
                 verbose = not verbose
-                print(f"[OncoGuard] Verbose mode: {'ON' if verbose else 'OFF'}")
+                print(f"[OncoCheck] Verbose mode: {'ON' if verbose else 'OFF'}")
                 continue
 
-            print("\nOncoGuard: ", end="", flush=True)
+            print("\nOncoCheck: ", end="", flush=True)
             response = self.ask(user_input, verbose=verbose)
             print(response)
             print()
@@ -369,15 +369,15 @@ if __name__ == "__main__":
         )
     EXCEL_PATH = "cancer_patient_data_sets.xlsx"
     PDF_PATH = "generalites_cancer.pdf"
-    INDEX_PATH = "oncoguard_index"
+    INDEX_PATH = "OncoCheck_index"
 
-    rag = OncoGuardRAG(api_key=API_KEY, index_path=INDEX_PATH)
+    rag = OncoCheckRAG(api_key=API_KEY, index_path=INDEX_PATH)
 
     # Build index if it doesn't exist, otherwise load it
     if not os.path.exists(f"{INDEX_PATH}.faiss"):
         rag.build_index("cancer_patient_data_sets.xlsx", "generalites_cancer.pdf")
     else:
-        print("[OncoGuard] Loading existing index...")
+        print("[OncoCheck] Loading existing index...")
         rag.load_index()
 
     # Start chat
