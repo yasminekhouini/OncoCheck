@@ -156,9 +156,18 @@ class VectorStore:
         self.collection = self.client.get_or_create_collection(name="oncoguard")
 
     def build(self, documents: list[dict]):
-        """Upload all documents to ChromaDB."""
+        """Upload all documents to ChromaDB (wipe + rebuild for consistency)."""
         print(f"[OncoGuard] Uploading {len(documents)} chunks to ChromaDB...")
-        ids       = [str(i) for i in range(len(documents))]
+
+        # Wipe existing data to avoid partial/duplicate states
+        existing = self.collection.count()
+        if existing > 0:
+            print(f"[OncoGuard] Clearing {existing} existing vectors before rebuild...")
+            self.client.delete_collection("oncoguard")
+            self.collection = self.client.get_or_create_collection(name="oncoguard")
+
+        import uuid
+        ids       = [str(uuid.uuid4()) for _ in documents]
         texts     = [doc["text"] for doc in documents]
         metadatas = [{"source": doc["source"], "type": doc["type"]} for doc in documents]
 
@@ -171,13 +180,18 @@ class VectorStore:
                 metadatas=metadatas[i:i+batch_size]
             )
             print(f"  Uploaded {min(i+batch_size, len(documents))}/{len(documents)}")
-        print("[OncoGuard] ChromaDB upload complete ✓")
+        print(f"[OncoGuard] ChromaDB upload complete ✓ — {self.collection.count()} vectors total")
 
     def search(self, query: str, top_k: int = 5) -> list[dict]:
         """Retrieve top-k most relevant chunks from ChromaDB."""
+        # Cap n_results to actual collection size to avoid ChromaDB errors
+        n_results = min(top_k, self.collection.count())
+        if n_results == 0:
+            print("[OncoGuard] Warning: collection is empty, no results to return.")
+            return []
         results = self.collection.query(
             query_texts=[query],
-            n_results=top_k
+            n_results=n_results
         )
         chunks = []
         for i in range(len(results["documents"][0])):
@@ -383,5 +397,3 @@ if __name__ == "__main__":
         rag_instance.vector_store.load(None)
         print("[OncoCheck] Existing ChromaDB collection found, skipping rebuild.")
     rag_instance.chat()
-
-    

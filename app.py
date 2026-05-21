@@ -30,17 +30,22 @@ if not API_KEY:
 
 rag_instance = OncoCheckRAG(api_key=API_KEY)
 
+# Minimum number of vectors expected in a complete index.
+# Adjust this after a successful first build by checking the logged count.
+EXPECTED_MIN_VECTORS = 100
+
 # Load or build index
 print("[OncoCheck] Initializing vector store...")
 try:
-    if rag_instance.vector_store.collection.count() == 0:
-        print("[OncoCheck] Building index from documents...")
+    count = rag_instance.vector_store.collection.count()
+    print(f"[OncoCheck] ChromaDB collection has {count} vectors.")
+    if count < EXPECTED_MIN_VECTORS:
+        print(f"[OncoCheck] Collection incomplete (< {EXPECTED_MIN_VECTORS} vectors). Rebuilding index...")
         EXCEL_PATH = "cancer_patient_data_sets.xlsx"
         PDF_PATH = "generalites_cancer.pdf"
         rag_instance.build_index(EXCEL_PATH, PDF_PATH)
     else:
-        rag_instance.vector_store.load(None)
-        print("[OncoCheck] Existing ChromaDB collection found.")
+        print("[OncoCheck] Existing ChromaDB collection looks complete ✓")
 except Exception as e:
     print(f"[OncoCheck] Warning: Could not load/build index: {e}")
 
