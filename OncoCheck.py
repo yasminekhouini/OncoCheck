@@ -149,7 +149,7 @@ def chunk_documents(docs: list[dict], max_tokens: int = 400) -> list[dict]:
 class VectorStore:
     def __init__(self):
         self.client = chromadb.CloudClient(
-            api_key='ck-FSuzH189M53haeD8B2zEsjVjZZ143xXu74rLCJ5HWMJg',
+            api_key='ck-44GAjofhzDQ9c7jwufWmBLFEa3uoKjvFGNG4K53w9mUB',
             tenant='534c6454-7ba5-4c4b-ad42-59c25c5f0c8d',
             database='oncocheck'
         )
